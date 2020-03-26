@@ -22,9 +22,17 @@ public class Ballmovement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.collider.name=="Kanan" || other.collider.name=="Kiri")
+        if(other.collider.name=="WallVertical Right" || other.collider.name=="WallVertical Left")
         {
-            GetComponent<Transform>().position = new Vector2(0,0);
+            StartCoroutine(jeda());
         }
+    }
+
+    IEnumerator jeda()
+    {
+        ball.velocity = Vector2.zero;
+        ball.GetComponent<Transform>().position = Vector2.zero;
+        yield return new WaitForSeconds(1);
+        ball.velocity = new Vector2(-1,-1) * speed;
     }
 }
