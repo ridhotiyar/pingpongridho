@@ -7,7 +7,7 @@ public class Ballmovement : MonoBehaviour
     public int speed = 30;
 
     public Rigidbody2D ball;
-    
+    public GameObject MasterScript;
     public Animator anim;
     // Start is called before the first frame update
     void Start()
@@ -33,6 +33,7 @@ public class Ballmovement : MonoBehaviour
     {
         if(other.collider.name=="WallVertical Right" || other.collider.name=="WallVertical Left")
         {
+            MasterScript.GetComponent<ScoringScript>().UpdateScore(other.collider.name);
             StartCoroutine(jeda());
         }
     }
