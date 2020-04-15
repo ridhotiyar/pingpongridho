@@ -12,7 +12,10 @@ public class Ballmovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ball.velocity = new Vector2(-1,-1)*speed;
+        int x = Random.Range (0,2) * 2 - 1;
+        int y = Random.Range (0,2) * 2 - 1;
+        ball.velocity = new Vector2(x, y)*speed;
+        ball.GetComponent<Transform>().position = Vector2.zero;
         anim.SetBool("isMove", true);
     }
 
@@ -43,8 +46,12 @@ public class Ballmovement : MonoBehaviour
         ball.velocity = Vector2.zero;
         anim.SetBool("isMove", false);
         ball.GetComponent<Transform>().position = Vector2.zero;
+
         yield return new WaitForSeconds(1);
-        ball.velocity = new Vector2(-1,-1) * speed;
+        
+        int x = Random.Range (0,2) * 2 - 1;
+        int y = Random.Range (0,2) * 2 - 1;
+        ball.velocity = new Vector2(x, y) * speed;
         anim.SetBool("isMove", true);
     }
 }
